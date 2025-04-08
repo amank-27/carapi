@@ -36,6 +36,21 @@ app.get('/cars', async (req, res) => {
     res.status(500).json({ message: "Error fetching cars", error: err });
   }
 });
+// Define GET route for a single car by id `/cars/:id`
+app.get('/cars/:id', async (req, res) => {
+  try {
+    const carId = req.params.id;  // Get the car ID from the URL parameter
+    const car = await Car.findOne({ id: carId });  // Find a car by its ID
+
+    if (!car) {
+      return res.status(404).json({ message: "Car not found" });  // If car not found, return 404
+    }
+
+    res.json(car);  // Return the car data
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching car details", error: err });
+  }
+});
 
 // Start the server
 app.listen(port, () => {
