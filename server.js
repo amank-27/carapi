@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
 // MongoDB URI
 const mongoURI = "mongodb+srv://amankhan19989270mi:CkpibBN9Jgit7rwL@cluster0.esqmdwc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
+app.use(cors());
 // Define the car schema
 const carSchema = new mongoose.Schema({
   id: { type: Number, required: true },
